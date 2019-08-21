@@ -1,0 +1,23 @@
+<h1><%= @event.name %></h1>
+
+<div id='event_id' data-id='<%= @event.id %>'>
+  Position in line: <span id='position'>calculating</span>
+</div>
+
+<div>
+  User ID: <span id='user_id'>unknown</span>
+</div>
+
+<div id='controls' class='hidden'>
+  <a href="#" id="buy">Buy Ticket</a>
+  <br />
+  <a href="#" id="pass">Decline Ticket</a>
+</div>
+
+<div>
+  <span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
+</div>
+
+
+<br />
+<a href="#" id="test">Test</a>
