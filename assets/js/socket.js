@@ -83,9 +83,15 @@ if (idEl.length > 0) {
     let positionEl = $("#position")
     const pos_in_queue = positionEl.data("pos-in-queue")
     positionEl.data("current-user", current_user)
-    $("#position").text(pos_in_queue - current_user)
-    if (current_user == pos_in_queue) {
-      $('#controls').removeClass('hidden')
+    const diff = pos_in_queue - current_user
+    if (diff < 0) {
+      $('#controls').addClass('hidden')
+      $("#position").addClass('hidden')
+    } else {
+      $("#position").text(diff)
+      if (current_user == pos_in_queue) {
+        $('#controls').removeClass('hidden')
+      }
     }
   });
 

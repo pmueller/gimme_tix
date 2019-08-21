@@ -26,7 +26,8 @@ defmodule GimmeTixWeb.EventQueueChannel do
   end
 
   def handle_in("buy", payload, socket) do
-    {:ok, event} =  GimmeTix.Web.Event.changeset(socket.assigns[:event], %{current_user: socket.assigns[:event].current_user + 1})
+    event = GimmeTix.Repo.get!(GimmeTix.Event, socket.assigns[:event].id)
+    {:ok, event} =  GimmeTix.Web.Event.changeset(event, %{current_user: event.current_user + 1})
                     |> GimmeTix.Repo.update()
     socket = assign(socket, :event, event)
     broadcast socket, "new_current_user", %{current_user: event.current_user}
@@ -34,7 +35,8 @@ defmodule GimmeTixWeb.EventQueueChannel do
   end
 
   def handle_in("pass", payload, socket) do
-    {:ok, event} =  GimmeTix.Web.Event.changeset(socket.assigns[:event], %{current_user: socket.assigns[:event].current_user + 1})
+    event = GimmeTix.Repo.get!(GimmeTix.Event, socket.assigns[:event].id)
+    {:ok, event} =  GimmeTix.Web.Event.changeset(event, %{current_user: event.current_user + 1})
                     |> GimmeTix.Repo.update()
     socket = assign(socket, :event, event)
     broadcast socket, "new_current_user", %{current_user: event.current_user}
