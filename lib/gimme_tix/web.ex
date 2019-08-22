@@ -6,7 +6,7 @@ defmodule GimmeTix.Web do
   import Ecto.Query, warn: false
   alias GimmeTix.Repo
 
-  alias GimmeTix.Web.Event
+  alias GimmeTix.Event
 
   @doc """
   Returns the list of events.

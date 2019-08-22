@@ -4,7 +4,7 @@ defmodule GimmeTix.WebTest do
   alias GimmeTix.Web
 
   describe "events" do
-    alias GimmeTix.Web.Event
+    alias GimmeTix.Event
 
     @valid_attrs %{current_user: 42, name: "some name"}
     @update_attrs %{current_user: 43, name: "some updated name"}

@@ -2,7 +2,7 @@ defmodule GimmeTixWeb.EventController do
   use GimmeTixWeb, :controller
 
   alias GimmeTix.Web
-  alias GimmeTix.Web.Event
+  alias GimmeTix.Event
 
   def index(conn, _params) do
     events = Web.list_events()

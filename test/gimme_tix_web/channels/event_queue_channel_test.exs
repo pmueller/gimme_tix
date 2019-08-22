@@ -1,26 +1,27 @@
 defmodule GimmeTixWeb.EventQueueChannelTest do
   use GimmeTixWeb.ChannelCase
+  alias GimmeTix.Event
+  alias GimmeTix.Repo
 
   setup do
+    attrs = %{name: "Hockey game", current_user: 0}
+    {:ok, event} = %Event{}
+                   |> Event.changeset(attrs)
+                   |> Repo.insert()
     {:ok, _, socket} =
       socket(GimmeTixWeb.UserSocket, "user_id", %{some: :assign})
-      |> subscribe_and_join(GimmeTixWeb.EventQueueChannel, "event_queue:lobby")
+      |> subscribe_and_join(GimmeTixWeb.EventQueueChannel, "event_queue:#{event.id}")
 
     {:ok, socket: socket}
   end
 
-  test "ping replies with status ok", %{socket: socket} do
-    ref = push socket, "ping", %{"hello" => "there"}
-    assert_reply ref, :ok, %{"hello" => "there"}
+  test "buy broadcasts the next user", %{socket: socket} do
+    push socket, "buy", %{}
+    assert_broadcast "new_current_user", %{current_user: 1}
   end
 
-  test "shout broadcasts to event_queue:lobby", %{socket: socket} do
-    push socket, "shout", %{"hello" => "all"}
-    assert_broadcast "shout", %{"hello" => "all"}
-  end
-
-  test "broadcasts are pushed to the client", %{socket: socket} do
-    broadcast_from! socket, "broadcast", %{"some" => "data"}
-    assert_push "broadcast", %{"some" => "data"}
+  test "pass broadcasts the next user", %{socket: socket} do
+    push socket, "buy", %{}
+    assert_broadcast "new_current_user", %{current_user: 1}
   end
 end

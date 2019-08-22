@@ -2,7 +2,7 @@ use Mix.Config
 
 # Configure your database
 config :gimme_tix, GimmeTix.Repo,
-  username: "postgres",
+  username: "preston",
   password: "postgres",
   database: "gimme_tix_test",
   hostname: "localhost",

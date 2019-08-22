@@ -15,9 +15,7 @@ defmodule GimmeTixWeb.Router do
 
   scope "/", GimmeTixWeb do
     pipe_through :browser
-
     get "/", EventController, :index
-
     resources "/events", EventController
   end
 end

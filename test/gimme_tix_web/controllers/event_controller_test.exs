@@ -34,7 +34,7 @@ defmodule GimmeTixWeb.EventControllerTest do
       assert redirected_to(conn) == Routes.event_path(conn, :show, id)
 
       conn = get(conn, Routes.event_path(conn, :show, id))
-      assert html_response(conn, 200) =~ "Show Event"
+      assert html_response(conn, 200) =~ @create_attrs[:name]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
