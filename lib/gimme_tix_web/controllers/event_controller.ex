@@ -15,7 +15,7 @@ defmodule GimmeTixWeb.EventController do
   end
 
   def create(conn, %{"event" => event_params}) do
-    case Web.create_event(event_params) do
+    case Web.create_event(Map.merge(event_params, %{"current_user" => 0})) do
       {:ok, event} ->
         conn
         |> put_flash(:info, "Event created successfully.")
