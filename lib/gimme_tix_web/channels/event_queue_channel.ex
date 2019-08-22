@@ -25,26 +25,26 @@ defmodule GimmeTixWeb.EventQueueChannel do
     {:noreply, socket}
   end
 
-
   def handle_in("buy", payload, socket) do
-    event = get_event(socket.assigns[:event].id)
-    {:ok, event} =  Event.changeset(event, %{current_user: event.current_user + 1})
-                    |> Repo.update()
-    socket = assign(socket, :event, event)
-    broadcast socket, "new_current_user", %{current_user: event.current_user}
+    socket = advance_queue(socket)
     {:noreply, socket}
   end
 
   def handle_in("pass", payload, socket) do
-    event = get_event(socket.assigns[:event].id)
-    {:ok, event} =  Event.changeset(event, %{current_user: event.current_user + 1})
-                    |> Repo.update()
-    socket = assign(socket, :event, event)
-    broadcast socket, "new_current_user", %{current_user: event.current_user}
+    socket = advance_queue(socket)
     {:noreply, socket}
   end
 
   defp get_event(event_id) do
     Repo.get!(Event, event_id)
+  end
+
+  defp advance_queue(socket) do
+    event = get_event(socket.assigns[:event].id)
+    {:ok, event} =  Event.changeset(event, %{current_user: event.current_user + 1})
+                    |> Repo.update()
+    socket = assign(socket, :event, event)
+    broadcast socket, "new_current_user", %{current_user: event.current_user}
+    socket
   end
 end
