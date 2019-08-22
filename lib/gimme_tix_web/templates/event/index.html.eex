@@ -1,11 +1,9 @@
-<h1>Listing Events</h1>
+<h1>Tickets For Sale</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Current user</th>
-
+      <th>Event</th>
       <th></th>
     </tr>
   </thead>
@@ -13,12 +11,9 @@
 <%= for event <- @events do %>
     <tr>
       <td><%= event.name %></td>
-      <td><%= event.current_user %></td>
 
       <td>
-        <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
-        <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-        <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link "Buy Tickets", to: Routes.event_path(@conn, :show, event) %>
       </td>
     </tr>
 <% end %>

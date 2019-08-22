@@ -15,7 +15,7 @@ defmodule GimmeTixWeb.EventControllerTest do
   describe "index" do
     test "lists all events", %{conn: conn} do
       conn = get(conn, Routes.event_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Events"
+      assert html_response(conn, 200) =~ "Tickets For Sale"
     end
   end
 
