@@ -2,6 +2,29 @@
 
 @import "./phoenix.css";
 
-.hidden {
-  display: none;
+.btn {
+  padding: 8px 22px;
+  border: 1px solid #0069d9;
+  display: inline-block;
+}
+
+.btn.red {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+ul.breadcrumb {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: .75rem 0;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb li:not(:first-child)::before {
+  display: inline-block;
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: #6c757d;
+  content: "/";
 }

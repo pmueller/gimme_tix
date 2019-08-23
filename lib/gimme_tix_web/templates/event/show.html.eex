@@ -1,23 +1,28 @@
-<h1><%= @event.name %></h1>
+<ul class='breadcrumb'>
+  <li><%= link "Event List", to: Routes.event_path(@conn, :index) %></li>
+  <li><%= @event.name %></li>
+</ul>
 
-<div id='event_id' data-id='<%= @event.id %>'>
+<h1>You're in line for <%= @event.name %> tickets</h1>
+
+<div id='line'>
   Position in line: <span id='position'>calculating</span>
+  <small>
+    <a href="#" id="skip">Skip ahead?</a>
+  </small>
+</div>
+
+<div id='controls' hidden='hidden'>
+  <a href="#" id="buy" class="btn">Buy Ticket</a>
+  <a href="#" id="pass" class="btn red">Decline Ticket</a>
+</div>
+
+<div id='thanks' hidden='hidden'>
+  <h3>Thanks for using GimmeTix!</h3>
 </div>
 
 <div>
-  User ID: <span id='user_id'>unknown</span>
+  Your magic link is: <span id='user_id'>unknown</span>
 </div>
 
-<div id='controls' class='hidden'>
-  <a href="#" id="buy">Buy Ticket</a>
-  <br />
-  <a href="#" id="pass">Decline Ticket</a>
-</div>
-
-<div>
-  <span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
-</div>
-
-
-<br />
-<a href="#" id="test">Skip</a>
+<div id='data' hidden='hidden' data-event-id='<%= @event.id %>'></div>

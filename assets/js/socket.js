@@ -59,53 +59,5 @@ socket.connect()
 //channel.join()
 //  .receive("ok", resp => { console.log("Joined successfully", resp) })
 //  .receive("error", resp => { console.log("Unable to join", resp) })
-let idEl = $("#event_id");
-if (idEl.length > 0) {
-  const id = idEl.data("id");
-  console.log(id);
-  let channel = socket.channel("event_queue:" + id, {})
-  channel.join()
-    .receive("ok", resp => {
-      console.log("Joined successfully", resp)
-      $("#user_id").text(resp['uuid'])
-      const current_user = resp['current_user']
-      const pos_in_queue = resp['pos_in_queue']
-      let positionEl = $("#position")
-      positionEl.data("current-user", current_user)
-      positionEl.data("pos-in-queue", pos_in_queue)
-      $("#position").text(pos_in_queue - current_user)
-    })
-    .receive("error", resp => { console.log("Unable to join", resp) })
-
-  channel.on('new_current_user', function(payload) {
-    console.log(payload)
-    const current_user = payload['current_user']
-    let positionEl = $("#position")
-    const pos_in_queue = positionEl.data("pos-in-queue")
-    positionEl.data("current-user", current_user)
-    const diff = pos_in_queue - current_user
-    if (diff < 0) {
-      $('#controls').addClass('hidden')
-      $("#position").addClass('hidden')
-    } else {
-      $("#position").text(diff)
-      if (current_user == pos_in_queue) {
-        $('#controls').removeClass('hidden')
-      }
-    }
-  });
-
-  $("#buy").click(function() {
-    channel.push('buy')
-  })
-
-  $("#test").click(function() {
-    channel.push('buy')
-  })
-
-  $("#pass").click(function() {
-    channel.push('pass')
-  })
-}
 
 export default socket
