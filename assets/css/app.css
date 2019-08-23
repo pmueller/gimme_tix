@@ -28,3 +28,7 @@ ul.breadcrumb {
   color: #6c757d;
   content: "/";
 }
+
+#controls {
+  margin-bottom: 20px;
+}

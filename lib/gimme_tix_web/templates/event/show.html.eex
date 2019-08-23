@@ -24,10 +24,10 @@
 </div>
 
 <p>
-  Your magic link is <span id='magic_url'>unknown</span>
-  <br />
   <small>
-    You can use this link to return to your spot in line on a different device.
+    Want to come back later? Use this link to return to your spot in line
+    <br />
+    <span id='magic_url'>unknown</span>
   </small>
 </p>
 
