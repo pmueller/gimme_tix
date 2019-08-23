@@ -15,6 +15,7 @@
 </div>
 
 <div id='controls' hidden='hidden'>
+  <h3>Congrats! You made it to the front of the line</h3>
   <a href="#" id="buy" class="btn">Buy Ticket</a>
   <a href="#" id="pass" class="btn red">Decline Ticket</a>
 </div>
