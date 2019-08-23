@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :gimme_tix, GimmeTixWeb.Endpoint,
-  url: [scheme: "https", host: "gimmetix", port: 443],
+  url: [scheme: "https", host: "gimmetix.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
