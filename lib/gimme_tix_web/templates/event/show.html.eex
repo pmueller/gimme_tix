@@ -6,10 +6,12 @@
 <h1>You're in line for <%= @event.name %> tickets</h1>
 
 <div id='line'>
-  Position in line: <span id='position'>calculating</span>
-  <small>
-    <a href="#" id="skip">Skip ahead?</a>
-  </small>
+  <h3>
+    Position in line: <span id='position'>calculating</span>
+    <small>
+      <a href="#" id="skip">Skip ahead?</a>
+    </small>
+  </h3>
 </div>
 
 <div id='controls' hidden='hidden'>
@@ -21,8 +23,12 @@
   <h3>Thanks for using GimmeTix!</h3>
 </div>
 
-<div>
-  Your magic link is: <span id='user_id'>unknown</span>
-</div>
+<p>
+  Your magic link is <span id='magic_url'>unknown</span>
+  <br />
+  <small>
+    You can use this link to return to your spot in line on a different device.
+  </small>
+</p>
 
-<div id='data' hidden='hidden' data-event-id='<%= @event.id %>'></div>
+<div id='data' hidden='hidden' data-event-id='<%= @event.id %>' data-url='<%= Routes.event_url(@conn, :show, @event) %>'></div>

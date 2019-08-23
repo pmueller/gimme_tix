@@ -20,8 +20,10 @@ let updateUIFromDataState = function() {
   const uuid = dataEl.data("uuid")
   const currentUserId = dataEl.data("current-user")
   const posInQueue = dataEl.data("pos-in-queue")
+  const baseUrl = dataEl.data("url")
   const diff = posInQueue - currentUserId
 
+  $("#magic_url").text(`${baseUrl}?user=${uuid}`)
   $("#user_id").text(uuid)
   $("#position").text(diff)
 
@@ -40,7 +42,12 @@ let updateUIFromDataState = function() {
 let dataEl = $('#data')
 const eventId = dataEl.data('event-id')
 if (!!eventId) {
-  let channel = socket.channel(`event_queue:${eventId}`, {})
+  let connectParams = {}
+  let searchParams = new URLSearchParams(window.location.search)
+  if (!!searchParams.get("user")) {
+    connectParams['uuid'] = searchParams.get("user")
+  }
+  let channel = socket.channel(`event_queue:${eventId}`, connectParams)
   channel.join()
     .receive("ok", resp => {
       dataEl.data("uuid", resp['uuid'])
@@ -65,6 +72,7 @@ if (!!eventId) {
   })
 
   $("#pass").click(function() {
+    const uuid = dataEl.data('uuid')
     channel.push('pass', {"uuid": uuid})
   })
 }

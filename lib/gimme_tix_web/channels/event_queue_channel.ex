@@ -5,7 +5,19 @@ defmodule GimmeTixWeb.EventQueueChannel do
   use GimmeTixWeb, :channel
   import Ecto.Query, only: [from: 2]
 
-  def join("event_queue:" <> event_id, payload, socket) do
+  def join("event_queue:" <> event_id, %{"uuid" => uuid}, socket) do
+    event = get_event(event_id)
+    socket = assign(socket, :event, event)
+
+    user = get_event_user_by_uuid(uuid, event.id)
+    socket = assign(socket, :user, user)
+
+    response = %{current_user: event.current_user, uuid: user.uuid, pos_in_queue: user.pos_in_queue}
+    send(self, :after_join)
+    {:ok, response, socket}
+  end
+
+  def join("event_queue:" <> event_id, %{}, socket) do
     event = get_event(event_id)
     socket = assign(socket, :event, event)
 
