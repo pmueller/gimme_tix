@@ -18,6 +18,11 @@ import socket from "./socket"
 
 let updateUIFromDataState = function() {
   const uuid = dataEl.data("uuid")
+  let searchParams = new URLSearchParams(window.location.search)
+  if (!searchParams.get("user")) {
+    window.location.search = `user=${uuid}`
+  }
+
   const currentUserId = dataEl.data("current-user")
   const posInQueue = dataEl.data("pos-in-queue")
   const baseUrl = dataEl.data("url")
