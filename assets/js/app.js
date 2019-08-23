@@ -21,6 +21,7 @@ let updateUIFromDataState = function() {
   let searchParams = new URLSearchParams(window.location.search)
   if (!searchParams.get("user")) {
     window.location.search = `user=${uuid}`
+    return
   }
 
   const currentUserId = dataEl.data("current-user")
