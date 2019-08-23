@@ -2,6 +2,10 @@
 
 I wanted to try building a realtime webapp with [Phoenix](https://phoenixframework.org/), so I decided to build a super MVP version of a system that can be used to queue people who want to buy tickets online for an event.
 
+You can see it running in production here: [https://gimmetix.herokuapp.com](https://gimmetix.herokuapp.com)
+
+#### Note: Don't try to use this for anything real. It has a button that lets people skip in line because there is no time limit on the person at the front of the line
+
 ### What it does
 - When a user clicks the link for an event they are placed into the event's queue
 - The user has a position in line, and the first person in line has an offer to buy tickets
