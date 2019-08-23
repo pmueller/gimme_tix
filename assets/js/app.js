@@ -62,16 +62,19 @@ if (!!eventId) {
     updateUIFromDataState()
   });
 
-  $("#buy").click(function() {
+  $("#buy").click(function(e) {
+    e.preventDefault()
     const uuid = dataEl.data('uuid')
     channel.push('buy', {"uuid": uuid})
   })
 
-  $("#skip").click(function() {
+  $("#skip").click(function(e) {
+    e.preventDefault()
     channel.push('skip')
   })
 
-  $("#pass").click(function() {
+  $("#pass").click(function(e) {
+    e.preventDefault()
     const uuid = dataEl.data('uuid')
     channel.push('pass', {"uuid": uuid})
   })
