@@ -6,7 +6,7 @@ defmodule GimmeTixWeb.EventController do
 
   def index(conn, _params) do
     events = Web.list_events()
-    render(conn, "index.html", events: events)
+    render(conn, :index, events: events)
   end
 
   def new(conn, _params) do

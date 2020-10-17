@@ -21,3 +21,5 @@
 </table>
 
 <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+
+<div id='react_test'></div>

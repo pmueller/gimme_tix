@@ -18,4 +18,10 @@ defmodule GimmeTixWeb.Router do
     get "/", EventController, :index
     resources "/events", EventController
   end
+
+  scope "/api/", GimmeTixWeb do
+    pipe_through :api
+    get "/", EventController, :index
+    resources "/events", EventController
+  end
 end

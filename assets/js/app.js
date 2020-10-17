@@ -1,7 +1,9 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import css from "../css/app.css"
+
+// https://stackoverflow.com/questions/41336858/how-to-import-css-modules-with-typescript-react-and-webpack
+const _css = require("../css/app.css");
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -85,3 +87,11 @@ if (!!eventId) {
     channel.push('pass', {"uuid": uuid})
   })
 }
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+import Greeter from "./greeter";
+
+const greeting = document.getElementById("react_test");
+ReactDOM.render(<Greeter name="Phoenix" />, greeting);
